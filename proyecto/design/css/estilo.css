@@ -1,0 +1,258 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+article, aside, figure, footer, header, hgroup, nav, section {
+    display: block;
+}
+
+html, body{
+    background-color: #EEEEEE;
+    height: 100%;
+    width: 100%;
+    font-family: arial;
+    font-size: 16px;
+}
+
+#contenedor{
+	margin: 10px auto;
+	background-color: #FFFFFF;
+	max-width: 996px;
+	padding: 0px 10px;
+	overflow: hidden;
+
+}
+
+header{
+	height: 100px;
+	width: 100%;
+	overflow: hidden;
+}
+
+/*Logo LUZ*/
+#logoLuz, #logo{
+	float: left;
+	height: 100px;
+	overflow: hidden;
+}
+
+#logoLuz img{
+	width: 65px;
+    height: 80px;
+    float: left;
+    padding-top: 10px;
+}
+
+#logoLuz p{
+    padding-top: 30px;
+    float:left;
+    font-family:"Times New Roman",Georgia,Serif;
+    color: #00549A;
+    font-weight: 600;
+}
+#logoLuz p span#delZulia{
+	font-size: 22px;
+}
+
+/*Logo Revista*/
+#logo h1{
+	font-family: arial;
+	font-size: 36px;
+}
+#logo h1 a:nth-child(1){
+	float: left;
+	margin-top: 20px;
+	padding-left: 10px;
+	color: #00549A;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
+	text-decoration: none;
+
+}
+
+#logo h1 a:nth-child(2){
+	float: left;
+	margin-top: 20px;
+	padding-left: 10px;
+	color: #12ADEE;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
+	text-decoration: none;
+}
+
+/*Formulario buscar*/
+.caja_buscar{
+	height: 100px;
+	overflow: hidden;
+}
+
+.caja_buscar .form_buscar{
+	float: right;
+	padding-top: 32px;
+}
+
+.caja_buscar .form_buscar input[type="text"]{
+    float: left;
+    border-radius: 50px;
+    padding: 4px 8px;
+    height: 20px;
+}
+
+.caja_buscar .form_buscar button{
+    float: left;
+    margin-left:10px;
+
+    background-color: #00549A;
+    background-image: linear-gradient(to bottom, #12ADEE, #00549A);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
+    border-image: none;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #FFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    /*line-height: 20px;*/
+    margin-bottom: 0;
+    padding: 4px 12px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
+}
+
+/*estilo para los input*/
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    border-radius: 4px;
+    color: #555555;
+    display: inline-block;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    padding: 4px 6px;
+    vertical-align: middle;
+}
+
+/*menu horizoltal*/
+nav#menu_horizontal{
+	height: 35px;
+	width: 100%;
+	background-color: #00549A;
+	overflow: hidden;
+}
+nav#menu_horizontal ul{
+	padding: 0;
+	margin: 0;
+}
+
+
+nav#menu_horizontal ul li{
+	list-style: none;
+	float: left;
+	text-align: left;
+	width: 16.666%;
+	height: 35px;
+}
+
+nav#menu_horizontal ul li:nth-child(3n+1){
+	background-color: #BDCE0C;
+}
+
+nav#menu_horizontal ul li:nth-child(3n+2){
+	background-color: #12ADEE;
+}
+
+nav#menu_horizontal ul li:nth-child(3n+3){
+	background-color: #FCC32E;
+
+}
+
+nav#menu_horizontal ul li a{
+	/*width: 166px;*/
+	display: block;
+	padding: 0px 0px;
+	line-height: 30px; 
+	background-color: #00549A;
+	color: #FFF;
+	padding-left: 5px;
+	text-decoration: none;
+}
+nav#menu_horizontal ul li a:hover{
+	background-color: #BDCE0C;
+	color: #000;
+}
+
+/*sub-menu horizontal*/
+nav#menu_horizontal ul li ul { 
+    position: absolute;  
+    display: none;
+} 
+nav#menu_horizontal ul li:hover ul { 
+    display: block; 
+} 
+nav#menu_horizontal ul li ul li:nth-child(n) { 
+    float: none;
+    padding: none;
+    padding-top: 0px;
+    display: block;
+    width: 160%;
+    height: 35px;
+    background-color: #00549A;
+}
+
+
+nav#menu_horizontal ul li ul li a { 
+	height: 35px;
+	line-height: 32px; 
+}
+
+
+/*
+Contenido
+aside panel left
+*/
+section#caja_contenido{
+	max-width: 996px;
+	background-color: green;
+}
+aside#panel_left{
+	background-color: white;
+	width: 16.661%;
+	float: left;
+}
+
+aside#panel_right{
+	background-color: white;
+	width: 16.661%;
+	float: left;
+}
+
+section#contenido{
+	width: 66.681%;
+	background-color: white;
+	float: left;
+}
+
+/*menu vertical*/
+nav.menu_vertical{
+	border-top: 4px solid #EEEEEE;
+	border-right: 1px solid #EEEEEE;
+	border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #EEEEEE;
+}
+
+nav.menu_vertical ul{
+	list-style: disc outside url("../img/list.gif");
+	font-size: 13px;
+}
+nav.menu_vertical ul li.current {
+  	list-style: disc outside;
+  	color: #00549A;
+}
+nav.menu_vertical ul li:nth-child(n) a{
+	color: #666666;
+}
+nav.menu_vertical ul li:nth-child(1) a{
+	color: #00549A;
+}

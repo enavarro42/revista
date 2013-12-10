@@ -1,8 +1,12 @@
 <?php
+define('BASE_URL', 'http://localhost/revista/proyecto/');
+//controlador por defecto
+define('DEFAULT_CONTROLLER', 'index');
+define('DEFAULT_LAYOUT', 'default');
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+define('APP_NAME', 'Publicaciones Cient&iacute;ficas');
+define('APP_SLOGAN', 'Revistas Arbitradas');
+define('APP_COMPANY', 'Universidad del Zulia');
+
+?>
 
