@@ -6,8 +6,11 @@ class indexController extends Controller{
     }
     
     public function index(){
-        $this->_view->titulo = 'Portada';
-        $this->_view->renderizar('index');
+        $post = $this->loadModel('post');
+        $this->_view->posts = $post->getPosts();
+        
+        $this->_view->titulo = 'Revistas Arbitradas';
+        $this->_view->renderizar('index', 'inicio');
     }
 }
 ?>
