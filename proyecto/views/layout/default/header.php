@@ -63,8 +63,11 @@
     
 <div id="bar-top">
     <div id="usuario">
-        <a href="">Registro</a>
-        <a href="">Mi Cuenta</a>
+        <?php if(isset($_layoutParams['menu_top'])): ?>
+            <?php for($i = 0; $i < count($_layoutParams['menu_top']); $i++): ?>
+            <a href="<?php echo $_layoutParams['menu_top'][$i]['enlace']?>"><?php echo $_layoutParams['menu_top'][$i]['titulo']?></a>
+            <?php endfor; ?>
+        <?php endif; ?>
     </div>
 </div>
 

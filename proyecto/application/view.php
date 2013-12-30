@@ -49,7 +49,26 @@ class View{
             )
         );
         
+        if(Session::get('autenticado')){
+            $menu_top = array(
+                array(
+                    'id' => 'login',
+                    'titulo' => 'Cerrar Sesi&oacute;n',
+                    'enlace' => BASE_URL . 'login/cerrar'
+                )
+            );
+        }else{
+            $menu_top = array(
+                array(
+                    'id' => 'login',
+                    'titulo' => 'Iniciar Sesi&oacute;n',
+                    'enlace' => BASE_URL . 'login'
+                )
+            );
+        }
+        
         $js = array();
+        
         if(count($this->_js)){
             $js = $this->_js;
         }
@@ -59,8 +78,10 @@ class View{
             'ruta_img' => BASE_URL . 'views/layout/'. DEFAULT_LAYOUT . '/img/',
             'ruta_js' => BASE_URL . 'views/layout/'. DEFAULT_LAYOUT . '/js/',
             'menu_horizontal' => $menu_horizontal,
+            'menu_top' => $menu_top,
             'js' => $js
         );
+        
         
         $rutaView = ROOT . 'views' . DS . $this->_controlador . DS . $vista . '.phtml';
         

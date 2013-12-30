@@ -1,31 +1,77 @@
 <?php
 
 class loginController extends Controller{
-    public function __contruct(){
+    
+    private $_login;
+    
+    public function __construct(){
         parent::__construct();
+        $this->_login = $this->loadModel('login');
     }
     
     public function index(){
-        Session::set('autenticado', true);
-        Session::set('level', 'usuario');
-        Session::set('tiempo', time());
+        $this->_view->titulo = 'Iniciar Sesi&oacute;n';
         
-        Session::set('var1', 'var1');
-        Session::set('var2', 'var2');
+        if($this->getInt('enviar') == 1){
+            $this->_view->datos = $_POST;
+            
+            if(!$this->getAlphaNum('usuario')){
+                $this->_view->_error = 'Debe introducir su nombre de usuario';
+                $this->_view->renderizar('index', 'login');
+                exit;
+            }
+            
+            if(!$this->getSql('pass')){
+                $this->_view->_error = 'Debe introducir su password';
+                $this->_view->renderizar('index', 'login');
+                exit;
+            }
+            
+            
+            $row = $this->_login->getUsuario(
+                    $this->getAlphaNum('usuario'),
+                    $this->getSql('pass')
+                    );
+            
+            if(!$row){
+                $this->_view->_error = 'Usuario y/o password incorrectos';
+                $this->_view->renderizar('index', 'login');
+                exit;
+            }
+            
+            if($row['estado'] != 1){
+                $this->_view->_error = 'Este usuario no esta habilitado';
+            }
+            
+            Session::set('autenticado', true);
+            //Session::set('level', $row['rol']);
+            
+            $row_persona_rol = $this->_login->getPersonaRol($row['id_persona']);
+            
+            $levels = array();
+            for($i = 0; $i < count($row_persona_rol); $i++)
+                $levels[] = $this->_login->getRol($row_persona_rol[$i][1]);
+            
+            Session::set('levels', $levels);
+            //temporalmente esto es de prueba...!
+            Session::set('level', 'admin');
+            
+            Session::set('usuario', $row['usuario']);
+            Session::set('id_usuario', $row['id_usuario']);
+            Session::set('id_persona', $row['id_persona']);
+            Session::set('tiempo', time());
+            
+            
+            $this->redireccionar('usuario');
+        }
         
-        $this->redireccionar('login/mostrar');
+        $this->_view->renderizar('index', 'login');
+    }
 
-    }
-    
-    public function mostrar(){
-        echo 'Level: ' . Session::get('level') . '<br>';
-        echo 'Var1: ' . Session::get('var1') . '<br>';
-        echo 'Var2: ' . Session::get('var2') . '<br>';
-    }
     
     public function cerrar(){
-        Session::destroy(array('var1', 'var2'));
-        $this->redireccionar('login/mostrar');
+        Session::destroy();
+        $this->redireccionar();
     }
 }
 

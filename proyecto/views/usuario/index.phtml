@@ -1,0 +1,11 @@
+<h2>Seleccionar Perfil</h2>
+<ul>
+<?php 
+    $levels = Session::get('levels');
+    for($i = 0; $i < count($levels); $i++):
+?>
+    <li><a href="<?php echo BASE_URL ."". trim($levels[$i][0]); ?>/index"><?php echo $levels[$i][0];  ?></a></li>
+
+    <?php endfor; ?>
+
+</ul>

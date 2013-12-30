@@ -1,13 +1,12 @@
 <?php
 
-//ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 
 define('DS', DIRECTORY_SEPARATOR);
 
 define('ROOT', realpath(dirname(__FILE__)) . DS);
 
 define('APP_PATH', ROOT. 'application'. DS);
-
 
 
 try{
