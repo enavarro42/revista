@@ -7,8 +7,14 @@ class usuarioController extends Controller{
     }
     
     public function index(){
-        $this->_view->titulo = 'Usuario';
-        $this->_view->renderizar('index', 'usuario');
+        
+        if(!Session::get('autenticado')){
+            header('location:' . BASE_URL . 'error/access/5050');
+            exit;
+        }else{
+            $this->_view->titulo = 'Usuario';
+            $this->_view->renderizar('index', 'usuario');
+        }
     }
     
 }

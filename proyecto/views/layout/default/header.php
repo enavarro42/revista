@@ -65,7 +65,11 @@
     <div id="usuario">
         <?php if(isset($_layoutParams['menu_top'])): ?>
             <?php for($i = 0; $i < count($_layoutParams['menu_top']); $i++): ?>
-            <a href="<?php echo $_layoutParams['menu_top'][$i]['enlace']?>"><?php echo $_layoutParams['menu_top'][$i]['titulo']?></a>
+            <?php if($i == 0): ?>
+                <a href="<?php echo $_layoutParams['menu_top'][$i]['enlace']?> " class="perfil"><?php echo $_layoutParams['menu_top'][$i]['titulo']?></a>
+            <?php else: ?>
+                <a href="<?php echo $_layoutParams['menu_top'][$i]['enlace']?>"><?php echo $_layoutParams['menu_top'][$i]['titulo']?></a>
+            <?php endif; ?>
             <?php endfor; ?>
         <?php endif; ?>
     </div>
@@ -116,4 +120,10 @@
 
             <section id="contenido">
                 <noscript><p>Para el correcto funcionamiento de la p&acaute;gina de tener habilitado JavaScript..!</p></noscript>
-                <div id="error"><?php if(isset($this->_error)) echo $this->_error;?></div>
+                <?php if(isset($this->_error)): ?>
+                <div id="error"><?php echo $this->_error; ?></div>
+                <?php endif; ?>
+
+                <?php if(isset($this->_mensaje)): ?>
+                <div id="mensaje"><?php echo $this->_mensaje; ?></div>
+                <?php endif; ?>

@@ -33,6 +33,7 @@ html, body{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00549a', endColorstr='#2989d8',GradientType=0 );*/
 }
 
+
 #usuario{
     float: right;
     overflow: hidden;
@@ -41,6 +42,10 @@ html, body{
 #usuario a{
     color: #888;
     padding-left: 4px;
+}
+
+#usuario a.perfil{
+    color: #12ADEE;
 }
 
 #contenedor{

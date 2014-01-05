@@ -22,6 +22,17 @@ abstract class Controller{
         }
     }
     
+    protected function getLibrary($libreria){
+        $rutaLibreria = ROOT . 'libs' . DS . $libreria . '.php';
+        
+        if(is_readable($rutaLibreria)){
+            require_once $rutaLibreria;
+        }
+        else{
+            throw new Exception('Error de libreria');
+        }
+    }
+    
     protected function getTexto($clave){
         if(isset($_POST[$clave]) && !empty($_POST[$clave])){
             $_POST[$clave] = htmlspecialchars($_POST[$clave], ENT_QUOTES);
@@ -67,6 +78,13 @@ abstract class Controller{
         }
     }
     
+    protected function validarParam($clave){
+        if(isset($_POST[$clave])){
+            return true;
+        }
+        return false;
+    }
+    
     protected function getSql($clave){
         if(isset($_POST[$clave]) && !empty($_POST[$clave])){
             $_POST[$clave] = strip_tags($_POST[$clave]);
@@ -86,6 +104,14 @@ abstract class Controller{
         }
         
     }
+    
+    public function validarEmail($email){
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            return false;
+        }
+        return true;
+    }
+    
 }
 ?>
 

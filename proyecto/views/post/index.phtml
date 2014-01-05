@@ -22,6 +22,8 @@
 
 <?php endif; ?>
 
+<?php if(isset($this->paginacion)) echo $this->paginacion;?>
+
 <?php if(Session::accesoViewEstricto(array('usuario'))): ?>
 
 <p><a href="<?php echo BASE_URL; ?>post/nuevo">Agregar post</a></p>

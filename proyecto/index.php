@@ -20,7 +20,8 @@ try{
     require_once APP_PATH . 'view.php';
     require_once APP_PATH . 'Database.php';
     require_once APP_PATH . 'Session.php';
-
+    require_once APP_PATH . 'Hash.php';
+    
     Session::init();
 
     Bootstrap::run(new Request);

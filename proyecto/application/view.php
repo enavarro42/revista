@@ -52,10 +52,17 @@ class View{
         if(Session::get('autenticado')){
             $menu_top = array(
                 array(
+                    'id' => 'perfil',
+                    'titulo' => Session::get('usuario'),
+                    'enlace' => BASE_URL . 'perfil'
+                ),
+                
+                array(
                     'id' => 'login',
                     'titulo' => 'Cerrar Sesi&oacute;n',
                     'enlace' => BASE_URL . 'login/cerrar'
                 )
+             
             );
         }else{
             $menu_top = array(
@@ -63,6 +70,11 @@ class View{
                     'id' => 'login',
                     'titulo' => 'Iniciar Sesi&oacute;n',
                     'enlace' => BASE_URL . 'login'
+                ),
+                array(
+                    'id' => 'registro',
+                    'titulo' => 'Registro',
+                    'enlace' => BASE_URL . 'registro'
                 )
             );
         }
