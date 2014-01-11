@@ -15,12 +15,13 @@ class postModel extends Model{
         return $post->fetch();
     }
     
-    public function insertarPost($titulo, $cuerpo){
-        $this->_db->prepare("INSERT INTO post VALUES (:titulo, :cuerpo)")
+    public function insertarPost($titulo, $cuerpo, $imagen){
+        $this->_db->prepare("INSERT INTO post(titulo, cuerpo, imagen) VALUES (:titulo, :cuerpo, :imagen)")
                 ->execute(
                             array(
                                 ':titulo' => $titulo,
-                                ':cuerpo' => $cuerpo
+                                ':cuerpo' => $cuerpo,
+                                ':imagen' => $imagen
                             )
                         );
     }

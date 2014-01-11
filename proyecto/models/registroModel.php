@@ -7,14 +7,14 @@ class registroModel extends Model{
     
     public function verificarUsuario($usuario){
         $id = $this->_db->query(
-                "SELECT id_usuario, codigo from usuarios WHERE usuario = '$usuario'"
+                "SELECT id_usuario, codigo from usuario WHERE usuario = '$usuario'"
                 );
         return $id->fetch();
     }
     
     public function verificarEmail($email){
         $id = $this->_db->query(
-                "SELECT id_usuario from usuarios WHERE email = '$email'"
+                "SELECT id_usuario from usuario WHERE email = '$email'"
                 );
         if($id->fetch()){
             return true;
@@ -23,19 +23,25 @@ class registroModel extends Model{
         return false;
     }
     
-    public function registrarUsuario($nombre, $apellido, $usuario, $password, $email, $cuenta){
+    public function registrarUsuario($nombre, $apellido, $genero, $telefono, $pais, $resumenBiografico, $usuario, $password, $email, $cuenta){
        
        $random = rand(1782598471, 9999999999);
        
        $this->_db->prepare(
-                "insert into persona(nombre, apellido) VALUES (:nombre, :apellido)"
+                "insert into persona(nombre, apellido, genero, telefono, pais, resumenBiografico) VALUES (:nombre, :apellido, :genero, :telefono, :pais, :resumenBiografico)"
                 )
                 ->execute(
                         array(
-                        ':nombre' => $nombre,
-                        ':apellido' => $apellido
+                            ':nombre' => $nombre,
+                            ':apellido' => $apellido,
+                            ':genero' => $genero,
+                            ':telefono' => $telefono,
+                            ':pais' => $pais,
+                            ':resumenBiografico' => $resumenBiografico
                         )
                 );
+       
+       
        
        
         $persona = $this->_db->query("SELECT MAX(id_persona) AS id_persona FROM persona");
@@ -49,32 +55,42 @@ class registroModel extends Model{
                        ':id_rol' => $cuenta[$i]
                     ));
         }
+        
+        $this->_db->prepare("insert into autor(id_persona) VALUES (:id_persona)")
+                ->execute(array(
+                    ':id_persona' => $persona['id_persona']
+                ));
 
         
         $this->_db->prepare(
-                "insert into usuarios(usuario, pass, estado, id_persona, email, fecha, codigo) VALUES (:usuario, :pass, 0, :id_persona, :email, now(), :codigo)"
+                "insert into usuario(usuario, pass, email, id_persona, fecha, estado, codigo) VALUES (:usuario, :pass, :email, :id_persona, now(), 0, :codigo)"
                 )
                 ->execute(array(
                    ':usuario' => $usuario,
                    ':pass' => Hash::getHash('md5', $password, HASH_KEY),
-                   ':id_persona' => $persona['id_persona'],
                    ':email' => $email,
+                   ':id_persona' => $persona['id_persona'],
                    ':codigo' => $random
                 ));
     }
     
     public function getUsuario($id, $codigo){
         $usuario = $this->_db->query(
-                "select * from usuarios where id_usuario = $id and codigo = $codigo"
+                "select * from usuario where id_usuario = $id and codigo = $codigo"
                 );
         return $usuario->fetch();
     }
     
     public function activarUsuario($id, $codigo){
         $this->_db->query(
-                "update usuarios set estado = 1 ".
+                "update usuario set estado = 1 ".
                 "where id_usuario = $id and codigo = $codigo"
                 );
+    }
+    
+    public function getPaises(){
+        $paises = $this->_db->query("select * from pais");
+        return $paises->fetchAll();
     }
 }
 

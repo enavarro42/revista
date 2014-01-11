@@ -52,8 +52,12 @@ html, body{
     margin: 0px auto;
     background-color: #FFFFFF;
     max-width: 996px;
+    min-height: 100%;
+    height: auto!important;
+    height: 100%;
     padding: 0px 10px;
     overflow: hidden;
+
 
 }
 
@@ -187,8 +191,8 @@ header{
 
 /*Logo Revista*/
 #logo p{
-    font-size: 32px;
-    padding-top: 40px;
+    font-size: 34px;
+    padding-top: 24px;
     overflow: hidden;
 }
 #logo p a{
@@ -207,71 +211,10 @@ header{
     padding-left: 5px;
 }
 
-
-
-/*formulario buscar*/
-#search-box {
-    position: relative;
-    width: 33.33%;
-    margin-top: 32px;
-    float: right;
+.caja_search{
+    padding-top: 34px;
 }
 
-#search-form {
-    height: 34px;
-    border: 1px solid #999;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    background-color: #fff;
-    overflow: hidden;
-}
-
-#search-text {
-    font-size: 14px;
-    color: #ddd;
-    border-width: 0;
-    background: transparent;
-}
-
-#search-box input[type="text"] {
-    width: 90%;
-    padding: 8px 0 12px 1em;
-    color: #333;
-    outline: none;
-}
-
-#search-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 36px;
-    width: 80px;
-    font-size: 14px;
-    color: #000;
-    text-align: center;
-    line-height: 30px;
-    border-width: 0;
-    background-color: #BDCE0C;
-    -webkit-border-radius: 0px 5px 5px 0px;
-    -moz-border-radius: 0px 5px 5px 0px;
-    border-radius: 0px 5px 5px 0px;
-    border: 1px solid #000;
-    cursor: pointer;
-}
-
-/*estilo para los input*/
-select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-    border-radius: 4px;
-    color: #555555;
-    display: inline-block;
-    font-size: 14px;
-    height: 20px;
-    line-height: 20px;
-    margin-bottom: 10px;
-    padding: 4px 6px;
-    vertical-align: middle;
-}
 
 /*menu horizoltal*/
 nav#menu_horizontal{
@@ -393,7 +336,6 @@ aside#panel_right{
 
 section#contenido{
         width: 66.68%;
-        height: 800px;
         background-color: white;
         float: left;
 }
@@ -404,11 +346,13 @@ nav.menu_vertical{
         border-right: 1px solid #EEEEEE;
         border-bottom: 1px solid #CCCCCC;
         border-left: 1px solid #EEEEEE;
+        overflow: hidden;
 }
 
 nav.menu_vertical ul{
         list-style: disc outside url("../img/list.gif");
         font-size: 13px;
+        margin-left: 15px;
 }
 nav.menu_vertical ul li.current {
           list-style: disc outside;
@@ -421,9 +365,20 @@ nav.menu_vertical ul li:nth-child(1) a{
         color: #00549A;
 }
 
+.caja_btn_submit{
+    width: 100px;
+    margin: 0 auto;
+}
+
+.corte {clear: both;padding-top: 2em;}
+
+.error{
+    color: red;
+}
+
 footer{
     text-align: center;
-    margin: 2px auto;
+    margin: 4px auto;
     font-size: 14px;
     color: gray;
 }
@@ -518,6 +473,10 @@ footer{
 		padding-right: 0px;
                 
 	}
+        
+        .caja_search{
+            padding-bottom: 5px;
+        }
 	
 	[class*='col-'] {
 		width: auto;

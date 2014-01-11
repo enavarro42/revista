@@ -32,7 +32,7 @@ class postController extends Controller{
     }
     
     public function nuevo(){
-        Session::accesoEstricto(array('usuario'));
+        //Session::accesoEstricto(array('usuario'));
         
         $this->_view->titulo = "Nuevo Post";
         
@@ -54,9 +54,36 @@ class postController extends Controller{
                 exit;
             }
             
+            $imagen = '';
+
+            if(isset($_FILES['imagen'])){
+                $this->getLibrary('upload' . DS . 'class.upload');
+                $ruta = ROOT . 'public' . DS . 'img'. DS . 'post' . DS;
+                $upload = new Upload($_FILES['imagen'], 'es_ES');
+                $upload->allowed = array('image/*');
+                $upload->file_new_name_body = 'upl_' . uniqid();
+                $upload->Process($ruta);
+                
+                if($upload->processed){
+                    $imagen = $upload->file_dst_name;
+                    $thumb = new Upload($upload->file_dst_pathname);
+                    $thumb->image_resize = true;
+                    $thumb->image_x = 100;
+                    $thumb->image_y = 70;
+                    $thumb->file_name_body_pre = 'thumb_';
+                    $thumb->Process($ruta . 'thumb' . DS);
+                    
+                }else{
+                    $this->_view->_error = $upload->error;
+                    $this->_view->renderizar('nuevo', 'post');
+                    exit;
+                }
+            }
+            
             $this->_post->insertarPost(
                     $this->getPostParam('titulo'),
-                    $this->getPostParam('cuerpo')
+                    $this->getPostParam('cuerpo'),
+                    $imagen
                     );
             
             $this->redireccionar('post');

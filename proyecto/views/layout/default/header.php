@@ -7,7 +7,6 @@
         <title><?php if(isset($this->titulo)) echo $this->titulo; ?></title>
     <!--CSS-->
         <link href='<?php echo $_layoutParams['ruta_css'];?>bootstrap.min.css' rel='stylesheet' type='text/css'>
-        <link href="<?php echo $_layoutParams['ruta_css'];?>bootstrap-responsive.min.css" rel='stylesheet' type='text/css'>
         <link href="<?php echo $_layoutParams['ruta_css'];?>estilo.css" rel="stylesheet"  type="text/css" />
         <!--JavaScript-->
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>-->
@@ -85,13 +84,17 @@
                 <div id="logo" class="col-5-12">
                     <p><a href="">Revistas</a><a href="">Arbitradas</a></p>
                 </div>
-
-                <div id='search-box' class="col-4-12">
-				  <form action='/search' id='search-form' method='get' target='_top'>
-				    <input id='search-text' name='q' placeholder='Escriba aqu&iacute;' type='text'/>
-				    <button id='search-button' type='submit'><span>Buscar</span></button>
-				  </form>
-				</div>
+                
+                <div class="row caja_search">
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                          <input type="text" class="form-control">
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Buscar</button>
+                          </span>
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                </div>
 
         </header>
 
