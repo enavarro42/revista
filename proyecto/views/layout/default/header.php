@@ -62,15 +62,23 @@
     
 <div id="bar-top">
     <div id="usuario">
-        <?php if(isset($_layoutParams['menu_top'])): ?>
-            <?php for($i = 0; $i < count($_layoutParams['menu_top']); $i++): ?>
-            <?php if($i == 0): ?>
-                <a href="<?php echo $_layoutParams['menu_top'][$i]['enlace']?> " class="perfil"><?php echo $_layoutParams['menu_top'][$i]['titulo']?></a>
-            <?php else: ?>
-                <a href="<?php echo $_layoutParams['menu_top'][$i]['enlace']?>"><?php echo $_layoutParams['menu_top'][$i]['titulo']?></a>
-            <?php endif; ?>
-            <?php endfor; ?>
-        <?php endif; ?>
+        <ul class="nav nav-pills">
+            
+ 
+              <?php if(isset($_layoutParams['menu_top'])): ?>
+                 <?php for($i = 0; $i < count($_layoutParams['menu_top']); $i++): ?>
+                    <?php if(Session::get('autenticado') && $i == 0): ?>
+                        <li><img src="<?php echo BASE_URL;?>public/img/usuario/user.png" alt="imagen" style="width: 34px; height: 34px;" class="img-circle"></li>
+                        <li><a href="<?php echo $_layoutParams['menu_top'][$i]['enlace']?>"><?php echo $_layoutParams['menu_top'][$i]['titulo']?></a></li>
+                        <li><a href="#">Messages <span class="badge">0</span></a></li>
+                    <?php else: ?>
+                        <li><a href="<?php echo $_layoutParams['menu_top'][$i]['enlace']?>"><?php echo $_layoutParams['menu_top'][$i]['titulo']?></a></li>
+                    <?php endif; ?>
+                 <?php endfor; ?>
+             <?php endif; ?>
+                    
+             
+        </ul>
     </div>
 </div>
 
@@ -116,17 +124,30 @@
                         <nav class="menu_vertical">
                                 <ul>
                                         <li class="current"><a href="">Inicio</a></li>
-                                        <li><a href="">otra cosa</a></li>
+                                        <li><a href="">Oficina de Publicaciones</a></li>
+                                        <li><a href="">Informaci&oacute;n</a></li>
+                                </ul>
+                        </nav>
+                        
+                        <h6>REVISTAS</h6>
+                        <nav class="menu_vertical">
+                                <ul>
+                                        <li><a href="">Ciencias</a></li>
+                                        <li><a href="">Opcion</a></li>
+                                        <li><a href="">Divulgaciones Matem&aacute;ticas</a></li>
+                                        <li><a href="">Enl@ce</a></li>
+                                        <li><a href="">Anartia</a></li>
                                 </ul>
                         </nav>
                 </aside>
 
             <section id="contenido">
-                <noscript><p>Para el correcto funcionamiento de la p&acaute;gina de tener habilitado JavaScript..!</p></noscript>
-                <?php if(isset($this->_error)): ?>
-                <div id="error"><?php echo $this->_error; ?></div>
-                <?php endif; ?>
+                <div id="pad_conten">
+                    <noscript><p>Para el correcto funcionamiento de la p&acaute;gina de tener habilitado JavaScript..!</p></noscript>
+                    <?php if(isset($this->_error)): ?>
+                    <div id="error"><?php echo $this->_error; ?></div>
+                    <?php endif; ?>
 
-                <?php if(isset($this->_mensaje)): ?>
-                <div id="mensaje"><?php echo $this->_mensaje; ?></div>
-                <?php endif; ?>
+                    <?php if(isset($this->_mensaje)): ?>
+                    <div id="mensaje"><?php echo $this->_mensaje; ?></div>
+                    <?php endif; ?>

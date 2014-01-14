@@ -7,6 +7,7 @@ class autorController extends Controller{
     
     public function index(){
         
+        
         if(!Session::get('autenticado')){
             header('location:' . BASE_URL . 'error/access/5050');
             exit;
@@ -15,10 +16,11 @@ class autorController extends Controller{
             //temporalmenta hasta pensarlo bien...!
             Session::set('level', 'autor');
 
-
             $this->_view->titulo = 'Autor';
-            $this->_view->renderizar('index', 'autor');
+            $this->redireccionar('manuscrito');
         }
+        
+        
         
     }
     

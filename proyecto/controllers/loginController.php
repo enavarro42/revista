@@ -56,7 +56,7 @@ class loginController extends Controller{
 
                 Session::set('levels', $levels);
                 //temporalmente esto es de prueba...!
-                Session::set('level', 'admin');
+               // Session::set('level', 'admin');
 
                 Session::set('usuario', $row['usuario']);
                 Session::set('id_usuario', $row['id_usuario']);

@@ -4,6 +4,7 @@ class Paginador
 {
     private $_datos;
     private $_paginacion;
+    private $_pagina;
     
     public function __construct() {
         $this->_datos = array();
@@ -52,6 +53,7 @@ class Paginador
         }
         
         $this->_paginacion = $paginacion;
+        $this->_pagina = $pagina;
         $this->_rangoPaginacion($paginacion);
         
         return $this->_datos;

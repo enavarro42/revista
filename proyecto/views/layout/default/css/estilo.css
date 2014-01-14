@@ -22,7 +22,7 @@ html, body{
     margin: 0px auto;
     max-width: 996px;
     padding: 0px 10px;
-    height:25px;
+    height:auto; //25px
   /*  background: #00549a; 
     background: -moz-linear-gradient(top, #00549a 0%, #207cca 100%, #12adee 100%, #2989d8 100%); 
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00549a), color-stop(100%,#207cca), color-stop(100%,#12adee), color-stop(100%,#2989d8)); 
@@ -40,7 +40,7 @@ html, body{
 }
 
 #usuario a{
-    color: #888;
+    /*color: #888;*/
     padding-left: 4px;
 }
 
@@ -340,6 +340,11 @@ section#contenido{
         float: left;
 }
 
+section#contenido #pad_conten{
+    overflow: hidden;
+    margin: 0px 5px;
+}
+
 /*menu vertical*/
 nav.menu_vertical{
         border-top: 4px solid #EEEEEE;
@@ -354,16 +359,21 @@ nav.menu_vertical ul{
         font-size: 13px;
         margin-left: 15px;
 }
-nav.menu_vertical ul li.current {
-          list-style: disc outside;
-          color: #00549A;
-}
+
 nav.menu_vertical ul li:nth-child(n) a{
         color: #666666;
 }
-nav.menu_vertical ul li:nth-child(1) a{
-        color: #00549A;
+
+nav.menu_vertical ul li.current {
+          list-style: disc outside;
 }
+
+nav.menu_vertical ul li.current a{
+          color: #00549A;
+}
+/*nav.menu_vertical ul li:nth-child(1) a{
+        color: #00549A;
+}*/
 
 .caja_btn_submit{
     width: 100px;

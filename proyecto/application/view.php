@@ -19,9 +19,9 @@ class View{
             ),
             /*revistas*/
             array(
-                'id' => 'post',
-                'titulo' => 'Post',
-                'enlace' => BASE_URL . 'post'
+                'id' => 'revistas',
+                'titulo' => 'Revistas',
+                'enlace' => BASE_URL . 'revistas'
             ),
             
             array(
@@ -43,8 +43,8 @@ class View{
             ),
             
             array(
-                'id' => 'informacion',
-                'titulo' => 'Informaci&oacute;n',
+                'id' => 'contacto',
+                'titulo' => 'Contacto',
                 'enlace' => BASE_URL
             )
         );

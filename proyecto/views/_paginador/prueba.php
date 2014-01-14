@@ -1,11 +1,11 @@
 <?php if(isset($this->_paginacion)): ?>
 
 <?php if($this->_paginacion['primero']): ?>
-    <a href="<?php echo $link . $this->_paginacion['primero']; ?>">Primero</a>
+    <li><a href="<?php echo $link . $this->_paginacion['primero']; ?>">Primero</a></li>
     
 <?php else: ?>
     
-    Primero
+    <li><a href="" disabled>Primero</a></li>
     
 <?php endif; ?>
     
@@ -13,11 +13,11 @@
 
 
 <?php if($this->_paginacion['anterior']): ?>
-    <a href="<?php echo $link . $this->_paginacion['anterior']; ?>">Anterior</a>
+    <li><a href="<?php echo $link . $this->_paginacion['anterior']; ?>">&laquo;</a></li>
     
 <?php else: ?>
     
-    Anterior
+    <li><a href="" disabled>&laquo;</a></li>
     
 <?php endif; ?>
     
@@ -27,14 +27,14 @@
  
     <?php if($this->_paginacion['actual'] == $this->_paginacion['rango'][$i]): ?>
         
-        <?php echo $this->_paginacion['rango'][$i]; ?>
+        <li class="active"><a href="" disabled><?php echo $this->_paginacion['rango'][$i]; ?></a></li>
 
     <?php else: ?>
 
-        <a href="<?php echo $link . $this->_paginacion['rango'][$i]; ?>">
+ <li><a href="<?php echo $link . $this->_paginacion['rango'][$i]; ?>">
             <?php echo $this->_paginacion['rango'][$i]; ?>
-        </a>&nbsp;
-
+        </a>
+ </li>
     <?php endif; ?>
     
 <?php endfor; ?>
@@ -42,22 +42,22 @@
  &nbsp;
  
 <?php if($this->_paginacion['siguiente']): ?>
-    <a href="<?php echo $link . $this->_paginacion['siguiente']; ?>">Siguiente</a>
+    <li><a href="<?php echo $link . $this->_paginacion['siguiente']; ?>">&raquo;</a></li>
     
 <?php else: ?>
     
-    Siguiente
+    <li><a href="" disabled>&raquo;</a></li>
     
 <?php endif; ?>
     
  &nbsp;
  
 <?php if($this->_paginacion['ultimo']): ?>
-    <a href="<?php echo $link . $this->_paginacion['ultimo']; ?>">Ultimo</a>
+    <li><a href="<?php echo $link . $this->_paginacion['ultimo']; ?>">Ultimo</a></li>
     
 <?php else: ?>
     
-    Ultimo
+    <li><a href="" disabled>Ultimo</a></li>
     
 <?php endif; ?>
     
