@@ -29,7 +29,7 @@
 <form id="registro" class="col-sm-6 col-lg-6" method='post' action='' >
     
     
-    <h1>Registro</h1>
+    <h2>Registro</h2>
 
     
     <input type="hidden" value="1" name="enviar" />
@@ -38,10 +38,9 @@
     <div class="controls">
       <label for="usuario">Usuario: </label>
       <input type="text" name="usuario" id="usuario" class="form-control" value="<?php if(isset($this->datos)) echo $this->datos['usuario']; ?>" /><br />
-      <label class="error" id="error_usuario"><?php if(isset($this->_error_usuario)) echo $this->_error_usuario; ?></label>
+      <label class="error" id="error_usuario"><?php if(isset($this->_error_usuario)) echo $this->_error_usuario; ?></label> 
     </div>
     
-    <br />
 
     <div class="controls">
       <label for="pass">Password: </label>

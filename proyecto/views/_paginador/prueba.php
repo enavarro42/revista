@@ -5,7 +5,7 @@
     
 <?php else: ?>
     
-    <li><a href="" disabled>Primero</a></li>
+    <li  class="disabled"><a href="">Primero</a></li>
     
 <?php endif; ?>
     
@@ -17,7 +17,7 @@
     
 <?php else: ?>
     
-    <li><a href="" disabled>&laquo;</a></li>
+    <li class="disabled"><a href="" disabled>&laquo;</a></li>
     
 <?php endif; ?>
     
@@ -46,7 +46,7 @@
     
 <?php else: ?>
     
-    <li><a href="" disabled>&raquo;</a></li>
+    <li class="disabled"><a href="" disabled>&raquo;</a></li>
     
 <?php endif; ?>
     
@@ -57,7 +57,7 @@
     
 <?php else: ?>
     
-    <li><a href="" disabled>Ultimo</a></li>
+    <li class="disabled"><a href="" disabled>Ultimo</a></li>
     
 <?php endif; ?>
     

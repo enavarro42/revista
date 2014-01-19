@@ -7,7 +7,7 @@ define('DEFAULT_LAYOUT', 'default');
 define('APP_NAME', 'Revistas Arbitradas');
 define('APP_SLOGAN', 'Revistas Arbitradas');
 define('APP_COMPANY', 'Universidad del Zulia');
-define('SESSION_TIME', 10);
+define('SESSION_TIME', 60);
 define('HASH_KEY', '52c1bf355efed');
 
 define('DB_HOST', 'localhost');
@@ -25,5 +25,7 @@ define('DB_PORT', '5432');
 define('DB_NAME', 'mvc');
 define('DB_CHAR', 'UTF8');*/
 
+
+//DESABILITAR EL error_reporting(0);
 ?>
 

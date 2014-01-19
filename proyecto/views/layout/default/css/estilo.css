@@ -17,6 +17,10 @@ html, body{
     margin: 0;
 }
 
+h1, h2, h3{
+    color: #115599;
+}
+
 #bar-top{
     overflow: hidden;
     margin: 0px auto;
@@ -324,25 +328,31 @@ section#caja_contenido{
 }
 aside#panel_left{
         background-color: white;
-        width: 16.66%;
+        width: 18.66%;
         float: left;
 }
 
 aside#panel_right{
         background-color: white;
-        width: 16.66%;
+        width: 18.66%;
         float: left;
+        overflow: hidden;
 }
 
 section#contenido{
-        width: 66.68%;
+        width: 62.68%;
         background-color: white;
         float: left;
+}
+
+section#contenido p{
+    text-align: justify;
 }
 
 section#contenido #pad_conten{
     overflow: hidden;
     margin: 0px 5px;
+    padding: 0px 5px;
 }
 
 /*menu vertical*/

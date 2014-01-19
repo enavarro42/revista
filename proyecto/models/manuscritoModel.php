@@ -8,12 +8,21 @@ class manuscritoModel extends Model{
     }
     
     public function getRevisiones($id_autor){
-        $revisiones = $this->_db->query("SELECT DISTINCT manuscrito.id_manuscrito, revista.nombre, manuscrito.titulo, estatus.estatus, rol.rol, revision.fecha ".
-                                  "FROM manuscrito, revista, estatus, obra, autor_obra, rol, responsable, revision " .
-                                  "WHERE autor_obra.id_autor = $id_autor and autor_obra.id_obra = obra.id_obra and obra.tipo='Manuscrito' and ". 
-                                  "manuscrito.id_obra = obra.id_obra and responsable.id_manuscrito = manuscrito.id_manuscrito and ". 
-                                  "responsable.id_rol = rol.id_rol and responsable.id_responsable = revision.id_responsable and revision.id_estatus = estatus.id_estatus ".
-                                  "ORDER BY revision.fecha DESC");
+        $revisiones = $this->_db->query("SELECT DISTINCT manuscrito.id_manuscrito, manuscrito.titulo, revista.nombre, rol.rol, estatus.estatus, revision.fecha ".
+                                        "FROM manuscrito, obra, autor, autor_obra, obra_revista_materia, revista, responsable, rol, persona_rol, revision, estatus ".
+                                        "WHERE autor.id_autor = $id_autor ".
+                                        "and autor.id_autor = autor_obra.id_autor ".
+                                        "and obra.id_obra = autor_obra.id_obra ".
+                                        "and obra.tipo = 'Manuscrito' ".
+                                        "and obra.id_obra = manuscrito.id_obra ".
+                                        "and obra.id_obra = obra_revista_materia.id_obra ".
+                                        "and obra_revista_materia.issn = revista.issn ".
+                                        "and manuscrito.id_manuscrito = responsable.id_manuscrito ".
+                                        "and persona_rol.id_persona = responsable.id_persona ".
+                                        "and rol.id_rol = responsable.id_rol ".
+                                        "and revision.id_responsable = responsable.id_responsable ".
+                                        "and revision.id_estatus = estatus.id_estatus ".
+                                        "order by revision.fecha DESC");
         return $revisiones->fetchAll();
     }
     

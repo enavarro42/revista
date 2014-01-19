@@ -1,4 +1,4 @@
-<h2>Mis Manuscritos</h2>
+<h3>Mis Manuscritos</h3>
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -20,7 +20,7 @@
           
           <?php for($i = 0; $i < count($this->manuscritos); $i++): ?>
           
-          <tr>
+          <tr <?php if($i == 0) echo 'class="success"'; ?>>
               <td><?php echo $this->manuscritos[$i]['id_manuscrito']; ?></td>
               <td><?php echo $this->manuscritos[$i]['nombre']; ?></td>
               <td><?php echo $this->manuscritos[$i]['titulo']; ?></td>

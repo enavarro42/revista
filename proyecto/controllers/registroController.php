@@ -199,6 +199,28 @@ class registroController extends Controller{
         $this->_view->renderizar('index', 'registro');
     }
     
+    public function comprobarUsuario(){
+        $resp['resp'] = "<span style='color:green;'>Disponible...!</span>";
+        
+        if($_POST['usuario'] == "") $resp['resp'] = "";
+        
+        if($this->_registro->verificarUsuario($this->getAlphaNum('usuario'))){
+            $resp['resp'] = 'El usuario '. $this->getAlphaNum('usuario') . ' ya existe';
+        }
+        echo $resp['resp'];
+    }
+    
+    public function comprobarEmail(){
+        $resp['resp'] = "<span style='color:green;'>Disponible...!</span>";
+        
+        if($_POST['email'] == "") $resp['resp'] = "";
+        
+        if($this->_registro->verificarEmail($this->getPostParam('email'))){
+            $resp['resp'] = 'Esta direcci&oacute;n de email ya est&aacute; registrada';
+        }
+        echo $resp['resp'];
+    }
+    
     public function activar($id, $codigo){
         if(!$this->filtrarInt($id) || !$this->filtrarInt($codigo)){
             $this->_view->_error = "Esta cuenta no existe";

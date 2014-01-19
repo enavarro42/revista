@@ -40,6 +40,18 @@ $(document).ready(function(){
            $("label#error_pais").text("");
     });
     
+    $("input#usuario").keyup(function(event){
+            $.post('/revista/proyecto/registro/comprobarUsuario', 'usuario='+$("input#usuario").val(), function(datos){
+            $("label#error_usuario").html(datos);
+        }, 'html');
+    });
+    
+    $("input#email").keyup(function(event){
+            $.post('/revista/proyecto/registro/comprobarEmail', 'email='+$("input#email").val(), function(datos){
+            $("label#error_email").html(datos);
+        }, 'html');
+    });
+    
     
 });
 

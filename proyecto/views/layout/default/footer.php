@@ -1,14 +1,28 @@
                     </div>
                 </section>
                 <aside id="panel_right">
-                    <h6>GESTIONAR</h6>
-                    <nav class="menu_vertical">
-                            <ul>
-                                    <li><a href="">Mis Manuscritos</a></li>
-                                    <li><a href="">Mis Articulos</a></li>
-                                    <li><a href="">Perfil</a></li>
+                    <?php if(Session::get('autenticado')): ?>
+                        <h6>GESTIONAR</h6>
+                        <nav class="menu_vertical">
+                            <ul>        
+                                <?php if(isset($_layoutParams['menu_right'])): ?>
+                                    <?php for($i = 0; $i < count($_layoutParams['menu_right']); $i++): ?>
+                                        <?php if(isset($_SESSION['vista_actual'])): ?>
+                                            <?php if(Session::get('vista_actual') == $_layoutParams['menu_right'][$i]['id']): ?>
+                                                <li class="current"><a  href="<?php echo $_layoutParams['menu_right'][$i]['enlace']?>"><?php echo $_layoutParams['menu_right'][$i]['titulo']?></a></li>
+                                            <?php else: ?>
+                                                <li><a href="<?php echo $_layoutParams['menu_right'][$i]['enlace']?>"><?php echo $_layoutParams['menu_right'][$i]['titulo']?></a></li>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    <?php endfor; ?>
+                                <?php endif; ?>
                             </ul>
-                    </nav>
+                        </nav>
+                     <?php endif; ?>
+                    
+                    
+                    <a class="twitter-timeline"  href="https://twitter.com/enavarro42"  data-widget-id="423140616944357376">Tweets por @enavarro42</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                 </aside>
         </section>
         <div class="corte"></div>

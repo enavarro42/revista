@@ -3,7 +3,6 @@
 class View{
     private $_controlador;
     private $_js;
-    
     public function __construct(Request $peticion){
         $this->_controlador = $peticion->getControlador();
         $this->_js = array();
@@ -11,9 +10,11 @@ class View{
     
     public function renderizar($vista, $item = false){
         
+        $menu_right = array();
+        
         $menu_horizontal = array(
             array(
-                'id' => 'inicio',
+                'id' => 'index',
                 'titulo' => 'Inicio',
                 'enlace' => BASE_URL
             ),
@@ -64,6 +65,55 @@ class View{
                 )
              
             );
+            
+            
+            $menu_right = array(
+
+                    array(
+                        'id' => 'usuario',
+                        'titulo' => 'Usuario',
+                        'enlace' => BASE_URL . 'usuario'
+                    ),
+
+                    array(
+                        'id' => 'perfil',
+                        'titulo' => 'Perfil',
+                        'enlace' => BASE_URL . 'perfil'
+                    )
+
+                );
+            
+            if(isset($_SESSION['level'])){
+                if(Session::get('level') == 'autor'){
+                    $menu_right = array(
+                        array(
+                            'id' => 'manuscrito',
+                            'titulo' => 'Mis Manuscritos',
+                            'enlace' => BASE_URL . 'manuscrito'
+                        ),
+
+                        array(
+                            'id' => 'articulos',
+                            'titulo' => 'Mis Art&iacute;culos',
+                            'enlace' => BASE_URL . 'articulo'
+                        ),
+
+                        array(
+                            'id' => 'usuario',
+                            'titulo' => 'Usuario',
+                            'enlace' => BASE_URL . 'usuario'
+                        ),
+                        
+                        array(
+                            'id' => 'perfil',
+                            'titulo' => 'Perfil',
+                            'enlace' => BASE_URL . 'perfil'
+                        )
+
+                    );
+                }
+            }
+            
         }else{
             $menu_top = array(
                 array(
@@ -79,6 +129,29 @@ class View{
             );
         }
         
+        $menu_left = array(
+                array(
+                    'id' => 'index',
+                    'titulo' => 'Inicio',
+                    'enlace' => BASE_URL
+                ),                
+                array(
+                    'id' => 'oficina',
+                    'titulo' => 'Oficina de Publicaciones',
+                    'enlace' => BASE_URL . 'oficina'
+                ),            
+                array(
+                    'id' => 'contacto',
+                    'titulo' => 'Contacto',
+                    'enlace' => BASE_URL
+                )
+             
+            );
+        
+        
+        
+        Session::set('vista_actual', $this->_controlador);
+        
         $js = array();
         
         if(count($this->_js)){
@@ -91,6 +164,8 @@ class View{
             'ruta_js' => BASE_URL . 'views/layout/'. DEFAULT_LAYOUT . '/js/',
             'menu_horizontal' => $menu_horizontal,
             'menu_top' => $menu_top,
+            'menu_left' => $menu_left,
+            'menu_right' => $menu_right,
             'js' => $js,
             'root' => BASE_URL
         );

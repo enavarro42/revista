@@ -123,16 +123,24 @@
                         <h6>REVISTAS ARBITRADAS</h6>
                         <nav class="menu_vertical">
                                 <ul>
-                                        <li class="current"><a href="">Inicio</a></li>
-                                        <li><a href="">Oficina de Publicaciones</a></li>
-                                        <li><a href="">Informaci&oacute;n</a></li>
+                                    <?php if(isset($_layoutParams['menu_left'])): ?>
+                                        <?php for($i = 0; $i < count($_layoutParams['menu_left']); $i++): ?>
+                                            <?php if(isset($_SESSION['vista_actual'])): ?>
+                                                <?php if(Session::get('vista_actual') == $_layoutParams['menu_left'][$i]['id']): ?>
+                                                    <li class="current"><a  href="<?php echo $_layoutParams['menu_left'][$i]['enlace']?>"><?php echo $_layoutParams['menu_left'][$i]['titulo']?></a></li>
+                                                <?php else: ?>
+                                                    <li><a href="<?php echo $_layoutParams['menu_left'][$i]['enlace']?>"><?php echo $_layoutParams['menu_left'][$i]['titulo']?></a></li>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        <?php endfor; ?>
+                                    <?php endif; ?>
                                 </ul>
                         </nav>
                         
                         <h6>REVISTAS</h6>
                         <nav class="menu_vertical">
                                 <ul>
-                                        <li><a href="">Ciencias</a></li>
+                                        <li><a href="<?php echo BASE_URL .'revistas/info/Ciencias'; ?>">Ciencias</a></li>
                                         <li><a href="">Opcion</a></li>
                                         <li><a href="">Divulgaciones Matem&aacute;ticas</a></li>
                                         <li><a href="">Enl@ce</a></li>

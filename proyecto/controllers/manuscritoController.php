@@ -11,6 +11,7 @@ class manuscritoController extends Controller{
     
     public function index($pagina = false){
         
+        Session::accesoEstricto(array('autor'));
         
         if(!$this->filtrarInt($pagina)){
             $pagina = false;
@@ -45,7 +46,7 @@ class manuscritoController extends Controller{
                 $iter++;
             }
             $this->_view->autores[$manusc['id_manuscrito']] = $array_autor;
-            $autores[$manusc['id_manuscrito']] = $array_autor;
+            //$autores[$manusc['id_manuscrito']] = $array_autor;
         }
         
         //echo '<pre>';
