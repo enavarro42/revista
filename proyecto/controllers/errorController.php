@@ -43,4 +43,3 @@ class errorController extends Controller{
 }
 
 ?>
-

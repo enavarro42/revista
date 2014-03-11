@@ -8,14 +8,37 @@
     <!--CSS-->
         <link href='<?php echo $_layoutParams['ruta_css'];?>bootstrap.min.css' rel='stylesheet' type='text/css'>
         <link href="<?php echo $_layoutParams['ruta_css'];?>estilo.css" rel="stylesheet"  type="text/css" />
+        
+        
+        <?php if(isset($_layoutParams['cssPublic']) && count($_layoutParams['cssPublic'])): ?>
+        <?php for($i=0; $i < count($_layoutParams['cssPublic']); $i++): ?>
+        
+        <link href="<?php echo $_layoutParams['cssPublic'][$i] ?>" rel="stylesheet"  type="text/css" />
+        
+        <?php endfor; ?>
+        <?php endif; ?>
+        
         <!--JavaScript-->
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>-->
+
+        <script src="<?php echo BASE_URL;?>public/js/jquery-1.10.2.min.js"></script>
         <script src="<?php echo BASE_URL;?>public/js/bootstrap.min.js"></script>
-        <script src="<?php echo BASE_URL;?>public/js/jquery-2.0.3.min.js"></script>
         <script src="<?php echo BASE_URL;?>public/js/resize.js"></script>
         <script src="<?php echo BASE_URL;?>public/js/jquery.validate.js"></script>
         
         
+       <!--JS publicos -->
+        
+        <?php if(isset($_layoutParams['jsPublic']) && count($_layoutParams['jsPublic'])): ?>
+        <?php for($i=0; $i < count($_layoutParams['jsPublic']); $i++): ?>
+        
+        <script src="<?php echo $_layoutParams['jsPublic'][$i] ?>" type="text/javascript"></script>
+        
+        <?php endfor; ?>
+        <?php endif; ?>
+        
+        
+        <!--JS privados de cada vista-->
         <?php if(isset($_layoutParams['js']) && count($_layoutParams['js'])): ?>
         <?php for($i=0; $i < count($_layoutParams['js']); $i++): ?>
         
@@ -23,21 +46,96 @@
         
         <?php endfor; ?>
         <?php endif; ?>
+        
+
+        
 
         <script>
-
+            
+            //var BASE_URL = "http://localhost/revista/proyecto/";
+            var BASE_URL = "http://e-navarro.com.ve/";
+            var entro = new Array();
+            entro[0] = 0;
+            
             $(window).resize(function(){
                 var elem = $(this);
             
                 // Update the info div width and height - replace this with your own code
                 // to do something useful!
                 /*alert('window width: ' + elem.width() + ', height: ' + elem.height() );*/
+                menu = $('#menu_horizontal').find('ul');
 
                 if(elem.width() > 768){
-                    menu = $('#menu_horizontal').find('ul');
+                    entro[0] = 0;
+                    cargarMenu();
+                    
                     menu.removeClass('open-menu');
+                }else{
+                    var ajax = new XMLHttpRequest(); 
+                    ajax.addEventListener("load", completeHandler, false); 
+                    ajax.addEventListener("error", errorHandler, false); 
+                    ajax.open("POST", BASE_URL + "login/usuario_logeado"); 
+                    ajax.send();
                 }
             });
+            
+            function cargarMenu(){
+                menu = $('#menu_horizontal').find('ul');
+                $(menu).empty();
+                
+                var url = new Array();
+                url[0] = BASE_URL;
+                url[1] = BASE_URL + "revistas";
+                url[2] = BASE_URL;
+                url[3] = BASE_URL;
+                url[4] = BASE_URL;
+                url[5] = BASE_URL;
+
+                var text = new Array();
+                text[0] = "Inicio";
+                text[1] = "Revistas";
+                text[2] = "Buscar";
+                text[3] = "Actual";
+                text[4] = "Archivos";
+                text[5] = "Contacto";
+
+                for(i=0; i<url.length; i++){
+                    $("<li><a href='"+url[i]+"'>"+text[i]+"</a></li>").appendTo(menu);
+                }
+            }
+            
+            function errorHandler(event){
+                alert("errorHandler: problemas de consulta..."); 
+            } 
+            function completeHandler(event){
+                if(parseInt(event.target.responseText) && entro[0] == 0){
+                    entro[0] = 1;
+                    var url = new Array();
+                    url[0] = BASE_URL + "manuscrito";
+                    url[1] = BASE_URL + "manuscrito/nuevo";
+                    url[2] = BASE_URL + "articulo";
+                    url[3] = BASE_URL + "usuario";
+                    url[4] = BASE_URL + "perfil";
+                    
+                    var text = new Array();
+                    text[0] = "Mis Manuscritos";
+                    text[1] = "Nuevo Manuscrito";
+                    text[2] = "Mis Articulos";
+                    text[3] = "Usuario";
+                    text[4] = "Perfil";
+                    
+                    menu = $('#menu_horizontal').find('ul');
+                    
+                    for(i=0; i<url.length; i++){
+                        $("<li><a href='"+url[i]+"'>"+text[i]+"</a></li>").appendTo(menu);
+                    }
+                }
+                
+                if(!parseInt(event.target.responseText)){
+                    entro[0] = 0;
+                    cargarMenu();
+                }
+            } 
 
             $(function() {
              
@@ -85,16 +183,17 @@
 <div id="contenedor">
         <header class="grid-header">
 
-                <div id="logoLuz" class="col-3-12">
+            <div id="logoLuz" class="col-md-3"><!--class="col-3-12"-->
                         <img src="<?php echo $_layoutParams['ruta_img'];?>logoLuz.png" alt="LUZ"><p><span>UNIVERSIDAD</span></br><span id="delZulia">DEL ZULIA</span></p>
                 </div>
 
-                <div id="logo" class="col-5-12">
-                    <p><a href="">Revistas</a><a href="">Arbitradas</a></p>
+                <div id="logo" class="col-md-5">
+                    <img src="<?php echo $_layoutParams['ruta_img'];?>logo1.png" alt="Revistas FEC">
+                    <!--<p><a href="">Revistas</a><a href="">Arbitradas</a></p>-->
                 </div>
                 
                 <div class="row caja_search">
-                    <div class="col-lg-4">
+                    <div class="col-md-4">
                         <div class="input-group">
                           <input type="text" class="form-control">
                           <span class="input-group-btn">

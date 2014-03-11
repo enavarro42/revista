@@ -106,12 +106,14 @@ abstract class Controller{
     }
     
     public function validarEmail($email){
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            return false;
+        $exp = '/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/';
+        if(isset($_POST[$email]) && !empty($_POST[$email])){
+            if(!preg_match($exp, $_POST[$email])){
+                return false;
+            }
         }
         return true;
     }
     
 }
 ?>
-

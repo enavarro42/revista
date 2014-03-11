@@ -14,7 +14,7 @@ class registroModel extends Model{
     
     public function verificarEmail($email){
         $id = $this->_db->query(
-                "SELECT id_usuario from usuario WHERE email = '$email'"
+                "SELECT id_persona from persona WHERE email = '$email'"
                 );
         if($id->fetch()){
             return true;
@@ -23,26 +23,55 @@ class registroModel extends Model{
         return false;
     }
     
+    public function setPersona($nombre, $apellido, $genero, $email, $telefono, $pais, $resumenBiografico){
+        $this->_db->prepare(
+         "insert into persona(nombre, apellido, genero, email, telefono, pais, resumenBiografico) VALUES(:nombre, :apellido, :genero, :email, :telefono, :pais, :resumenBiografico)"
+         )
+         ->execute(
+                 array(
+                     ':nombre' => $nombre,
+                     ':apellido' => $apellido,
+                     ':genero' => $genero,
+                     ':email' => $email,
+                     ':telefono' => $telefono,
+                     ':pais' => $pais,
+                     ':resumenBiografico' => $resumenBiografico
+                 )
+         );
+    }
+    
+    public function setPersonaRol($id_persona, $id_rol){
+        
+        $this->_db->query("INSERT INTO persona_rol(id_persana, id_rol) VALUES($id_persona, $id_rol)");
+
+    }
+    
+    public function getUltimaPersona(){
+         $id = $this->_db->query(
+                "SELECT MAX(id_persona) as id_persona from persona"
+                );
+        return $id->fetch();
+    }
+    
     public function registrarUsuario($nombre, $apellido, $genero, $telefono, $pais, $resumenBiografico, $usuario, $password, $email, $cuenta){
        
-       $random = rand(1782598471, 9999999999);
-       
-       $this->_db->prepare(
-                "insert into persona(nombre, apellido, genero, telefono, pais, resumenBiografico) VALUES (:nombre, :apellido, :genero, :telefono, :pais, :resumenBiografico)"
-                )
-                ->execute(
-                        array(
-                            ':nombre' => $nombre,
-                            ':apellido' => $apellido,
-                            ':genero' => $genero,
-                            ':telefono' => $telefono,
-                            ':pais' => $pais,
-                            ':resumenBiografico' => $resumenBiografico
-                        )
-                );
-       
-       
-       
+        $random = rand(1782598471, 9999999999);
+
+         $this->_db->prepare(
+         "insert into persona(nombre, apellido, genero, email, telefono, pais, resumenBiografico) VALUES(:nombre, :apellido, :genero, :email, :telefono, :pais, :resumenBiografico)"
+         )
+         ->execute(
+                 array(
+                     ':nombre' => $nombre,
+                     ':apellido' => $apellido,
+                     ':genero' => $genero,
+                     ':email' => $email,
+                     ':telefono' => $telefono,
+                     ':pais' => $pais,
+                     ':resumenBiografico' => $resumenBiografico
+                 )
+         );
+
        
         $persona = $this->_db->query("SELECT MAX(id_persona) AS id_persona FROM persona");
         
@@ -56,19 +85,20 @@ class registroModel extends Model{
                     ));
         }
         
-        $this->_db->prepare("insert into autor(id_persona) VALUES (:id_persona)")
-                ->execute(array(
-                    ':id_persona' => $persona['id_persona']
-                ));
-
+        if(in_array("3", $cuenta)){
+        
+            $this->_db->prepare("insert into autor(id_persona) VALUES (:id_persona)")
+                    ->execute(array(
+                        ':id_persona' => $persona['id_persona']
+                    ));
+        }
         
         $this->_db->prepare(
-                "insert into usuario(usuario, pass, email, id_persona, fecha, estado, codigo) VALUES (:usuario, :pass, :email, :id_persona, now(), 0, :codigo)"
+                "insert into usuario(usuario, pass, id_persona, fecha, estado, codigo) VALUES (:usuario, :pass, :id_persona, now(), 0, :codigo)"
                 )
                 ->execute(array(
                    ':usuario' => $usuario,
                    ':pass' => Hash::getHash('md5', $password, HASH_KEY),
-                   ':email' => $email,
                    ':id_persona' => $persona['id_persona'],
                    ':codigo' => $random
                 ));

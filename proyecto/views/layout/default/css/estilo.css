@@ -194,6 +194,12 @@ header{
 }
 
 /*Logo Revista*/
+#logo img{
+    padding-left: 10px;
+    height: 75px;
+    margin-top: 10px;
+}
+
 #logo p{
     font-size: 34px;
     padding-top: 24px;
@@ -230,7 +236,7 @@ nav#menu_horizontal{
 nav#menu_horizontal ul{
         padding: 0;
         margin: 0;
-        /*overflow: hidden;*/
+        overflow: hidden;
         z-index: 40;
 }
 
@@ -385,6 +391,24 @@ nav.menu_vertical ul li.current a{
         color: #00549A;
 }*/
 
+#tabs{
+    overflow: hidden;
+}
+
+#tabs-1{
+    overflow: scroll;
+    height: 600px;
+}
+
+#btn_tabs{
+    padding-top: 10px;
+}
+
+.btn-right{
+    float: right;
+    margin-left: 5px;
+}
+
 .caja_btn_submit{
     width: 100px;
     margin: 0 auto;
@@ -394,7 +418,18 @@ nav.menu_vertical ul li.current a{
 
 .error{
     color: red;
+    font-size: 12px;
 }
+
+.controls label, .help-block{
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.separador{
+    color: #12ADEE;
+}
+
 
 footer{
     text-align: center;
@@ -464,7 +499,7 @@ footer{
 	}
 
 	#logo{
-		margin-left: 22%;
+		margin-left: 28%;
 		margin-top: 0px;
 		padding: 0px;
                 -webkit-transition: padding .4s;
@@ -530,22 +565,39 @@ footer{
         transition: padding .4s;
     }
     #logo{
-        margin-left: 12%;
-        transition: max-height .4s;
+        margin-left: 20%;
+        -webkit-transition: padding .4s;
+        -moz-transition: padding .4s;
+        -ms-transition: padding .4s;
+        -o-transition: padding .4s;
+        transition: padding .4s;
+        
     }
-    #logo h1{
-        font-size: 28px;
-    }
+    
 }
 
 @media handheld, only screen and (max-width: 410px) {
     #logo{
         margin-left: 6%;
-        transition: max-height .4s;
+        /*transition: max-height .4s;*/
+        -webkit-transition: padding .4s;
+        -moz-transition: padding .4s;
+        -ms-transition: padding .4s;
+        -o-transition: padding .4s;
+        transition: padding .4s;
     }
 
     #logoLuz{
         padding-left: 18%;
         transition: max-height .4s;
+        -webkit-transition: padding .4s;
+        -moz-transition: padding .4s;
+        -ms-transition: padding .4s;
+        -o-transition: padding .4s;
+        transition: padding .4s;
+    }
+    
+    #logo p{
+        font-size: 18px;
     }
 }

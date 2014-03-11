@@ -30,4 +30,3 @@ new PDO('pgsql:dbname=$dbname;
 }
 
 ?>
-

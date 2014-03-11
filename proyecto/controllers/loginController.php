@@ -72,6 +72,13 @@ class loginController extends Controller{
             $this->redireccionar();
         }
     }
+    
+    public function usuario_logeado(){
+        if(isset($_SESSION['usuario']))
+            echo "1";
+        else
+            echo "0";
+    }
 
     
     public function cerrar(){

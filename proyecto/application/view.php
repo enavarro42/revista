@@ -3,9 +3,14 @@
 class View{
     private $_controlador;
     private $_js;
+    private $_jsPublic;
+    private $_cssPublic;
+    
     public function __construct(Request $peticion){
         $this->_controlador = $peticion->getControlador();
         $this->_js = array();
+        $this->_jsPublic = array();
+        $this->_cssPublic = array();
     }
     
     public function renderizar($vista, $item = false){
@@ -91,6 +96,11 @@ class View{
                             'titulo' => 'Mis Manuscritos',
                             'enlace' => BASE_URL . 'manuscrito'
                         ),
+                        array(
+                            'id' => 'nuevo',
+                            'titulo' => 'Nuevo Manuscritos',
+                            'enlace' => BASE_URL . 'manuscrito/nuevo'
+                        ),
 
                         array(
                             'id' => 'articulos',
@@ -153,9 +163,19 @@ class View{
         Session::set('vista_actual', $this->_controlador);
         
         $js = array();
+        $jsPublic = array();
+        $cssPublic = array();
         
         if(count($this->_js)){
             $js = $this->_js;
+        }
+        
+        if(count($this->_jsPublic)){
+            $jsPublic = $this->_jsPublic;
+        }
+        
+        if(count($this->_cssPublic)){
+            $cssPublic = $this->_cssPublic;
         }
         
         $_layoutParams = array(
@@ -166,7 +186,9 @@ class View{
             'menu_top' => $menu_top,
             'menu_left' => $menu_left,
             'menu_right' => $menu_right,
+            'cssPublic' => $cssPublic,
             'js' => $js,
+            'jsPublic' => $jsPublic,
             'root' => BASE_URL
         );
         
@@ -191,7 +213,27 @@ class View{
             throw new Exception('Error de js');
         }
     }
+    
+    public function setJsPublic(array $js){
+        if(is_array($js) && count($js)){
+            for($i=0; $i<count($js); $i++){
+                $this->_jsPublic[] = BASE_URL . 'public/js/' . $js[$i] . '.js';
+            }
+        }else{
+            throw new Exception('Error de js');
+        }
+    }
+    
+    
+    public function setCssPublic(array $css){
+        if(is_array($css) && count($css)){
+            for($i=0; $i<count($css); $i++){
+                $this->_cssPublic[] = BASE_URL . 'public/css/' . $css[$i] . '.css';
+            }
+        }else{
+            throw new Exception('Error de css');
+        }
+    }
 }
 
 ?>
-

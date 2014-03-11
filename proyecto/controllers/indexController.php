@@ -13,4 +13,3 @@ class indexController extends Controller{
     }
 }
 ?>
-

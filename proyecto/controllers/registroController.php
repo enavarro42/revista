@@ -39,7 +39,7 @@ class registroController extends Controller{
                 //$this->_view->renderizar('index', 'registro');
                 $validado = false;
             }
-            
+            //^[a-zA-Z]((\.|_|-)?[a-zA-Z0-9]+){3}$
             $exp = '/^[a-zA-Z0-9áéíóúÁÉÍÓÚ_]+$/';
             
             if(!preg_match($exp, $this->getPostParam('usuario'))){
@@ -79,7 +79,7 @@ class registroController extends Controller{
                 $validado = false;
             }
             
-            if(!(strlen($this->getSql('nombre')) > 3)){
+            if(!(strlen($this->getSql('nombre')) > 2)){
                 $this->_view->_error_nombre = 'Por favor introduzca como m&iacute;nimo 4 car&aacute;cteres';
                 //$this->_view->renderizar('index', 'registro');
                 $validado = false;
@@ -126,7 +126,7 @@ class registroController extends Controller{
                 $validado = false;
             }
 
-            $exp = '/^\\d{3,4}-\\d{7,8}$/';
+            $exp = '/^\\d{11,14}$/';
             
             if(!preg_match($exp, $this->getPostParam('telefono'))){
                 $this->_view->_error_telefono = 'Debe proporcionar un n&uacute;mero de tel&eacute;fono v&aacute;lido';
@@ -164,7 +164,6 @@ class registroController extends Controller{
                         $this->getPostParam('email'),
                         $this->getPostParam('cuenta')
                         );
-
 
                 $usuario = $this->_registro->verificarUsuario($this->getAlphaNum('usuario'));
 
@@ -211,13 +210,15 @@ class registroController extends Controller{
     }
     
     public function comprobarEmail(){
-        $resp['resp'] = "<span style='color:green;'>Disponible...!</span>";
         
-        if($_POST['email'] == "") $resp['resp'] = "";
         
+        $resp['resp'] = "";
+            
         if($this->_registro->verificarEmail($this->getPostParam('email'))){
             $resp['resp'] = 'Esta direcci&oacute;n de email ya est&aacute; registrada';
         }
+            
+    
         echo $resp['resp'];
     }
     

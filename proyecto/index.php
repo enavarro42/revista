@@ -1,6 +1,6 @@
 <?php
 
-ini_set('display_errors', 1);
+//ini_set('display_errors', 1);
 
 define('DS', DIRECTORY_SEPARATOR);
 
@@ -15,7 +15,6 @@ try{
     require_once APP_PATH . 'config.php';
     require_once APP_PATH . 'controller.php';
     require_once APP_PATH . 'model.php';
-    require_once APP_PATH . 'registro.php';
     require_once APP_PATH . 'request.php';
     require_once APP_PATH . 'view.php';
     require_once APP_PATH . 'Database.php';

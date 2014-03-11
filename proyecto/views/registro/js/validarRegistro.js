@@ -1,5 +1,8 @@
 $(document).ready(function(){
     
+    //var URL_BASE = "/revista/proyecto/";
+    var URL_BASE = "";
+    
     $('input#usuario').keydown(function(event){ 
        if(event.keyCode != 8)
            $("label#error_usuario").text("");
@@ -40,14 +43,17 @@ $(document).ready(function(){
            $("label#error_pais").text("");
     });
     
+    ///revista/proyecto
+    
+    
     $("input#usuario").keyup(function(event){
-            $.post('/revista/proyecto/registro/comprobarUsuario', 'usuario='+$("input#usuario").val(), function(datos){
+            $.post(URL_BASE + '/registro/comprobarUsuario', 'usuario='+$("input#usuario").val(), function(datos){
             $("label#error_usuario").html(datos);
         }, 'html');
     });
     
     $("input#email").keyup(function(event){
-            $.post('/revista/proyecto/registro/comprobarEmail', 'email='+$("input#email").val(), function(datos){
+            $.post(URL_BASE + '/registro/comprobarEmail', 'email='+$("input#email").val(), function(datos){
             $("label#error_email").html(datos);
         }, 'html');
     });

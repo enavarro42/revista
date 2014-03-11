@@ -21,6 +21,23 @@ class ajaxController extends Controller{
             echo json_encode($this->_ajax->getCiudades($this->getInt('pais')));
     }
     
+    public function getPaises(){
+        echo json_encode($this->_ajax->getPaises());
+    }
+    
+    public function getRevistas(){
+        echo json_encode($this->_ajax->getRevistas());
+    }
+    
+    public function getMaterias(){
+        echo json_encode($this->_ajax->getMaterias());
+    }
+    
+    
+        public function getIdiomas(){
+        echo json_encode($this->_ajax->getIdiomas());
+    }
+    
     public function insertarCiudad(){
         if($this->getInt('pais') && $this->getSql('ciudad')){
             $this->_ajax->insertarCiudad(

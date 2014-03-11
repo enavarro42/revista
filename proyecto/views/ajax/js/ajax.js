@@ -1,6 +1,10 @@
 $(document).ready(function(){
+    
+    //var URL_BASE = "/revista/proyecto/";
+    var URL_BASE = "";
+    
     var getCiudades = function(){
-        $.post('/revista/proyecto/ajax/getCiudades', 'pais='+$("#pais").val(), function(datos){
+        $.post(URL_BASE + 'ajax/getCiudades', 'pais='+$("#pais").val(), function(datos){
             $("#ciudad").html('');
             for(var i = 0; i < datos.length; i++){
                 $('#ciudad').append('<option value=">'+ datos[i].id +'">' + datos[i].ciudad + '</option>');
@@ -18,7 +22,7 @@ $(document).ready(function(){
     });
     
     $("#btn_insertar").click(function(){
-        $.post('/revista/proyecto/ajax/insertarCiudad', 'pais='+$("#pais").val() + '&ciudad='+$('#ins_ciudad').val());
+        $.post(URL_BASE + 'ajax/insertarCiudad', 'pais='+$("#pais").val() + '&ciudad='+$('#ins_ciudad').val());
         $("#ins_ciudad").val("");
         getCiudades();
     });

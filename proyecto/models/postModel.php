@@ -47,4 +47,3 @@ class postModel extends Model{
     }
 }
 ?>
-
