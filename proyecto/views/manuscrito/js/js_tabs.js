@@ -161,7 +161,10 @@ function subirDatos(){
                 //document.getElementById("status").innerHTML = event.target.responseText; 
             }
             else{//si hubo algun error mostrarlo
-                document.getElementById("status").innerHTML = data.msj_file;
+                document.getElementById("status").innerHTML = "Datos almacenados correctamente...!";
+                alert("Nuevo Manuscrito creado con éxito!");
+                url = URL_BASE + "manuscrito/";
+                $(location).attr('href',url);
             }
 
             $("#progressBar").val(0);

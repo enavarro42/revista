@@ -117,7 +117,7 @@ class manuscritoController extends Controller{
     public function insertar(){
         
         //validar
-        
+        Session::accesoEstricto(array('autor'));
         $arreglo = array();
         $arreglo["status"] = 1;
         
@@ -445,6 +445,8 @@ class manuscritoController extends Controller{
     }
     
     public function nuevo(){
+        
+        Session::accesoEstricto(array('autor'));
         
         $this->_view->setCssPublic(array('jquery-ui'));
         
